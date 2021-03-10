@@ -34,7 +34,7 @@ internal class CoronavirusServiceSpec : Spek({
 
             println(result[0])
 
-            it("returns list with one element"){
+            it("returns list with one element") {
                 result.shouldNotBeEmpty()
                 result.size.shouldBe(1)
             }
