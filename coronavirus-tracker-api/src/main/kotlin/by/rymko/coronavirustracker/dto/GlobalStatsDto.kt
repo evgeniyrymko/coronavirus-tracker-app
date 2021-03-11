@@ -1,4 +1,4 @@
-package by.rymko.coronavirustracker.model
+package by.rymko.coronavirustracker.dto
 
 import com.fasterxml.jackson.annotation.JsonProperty
 

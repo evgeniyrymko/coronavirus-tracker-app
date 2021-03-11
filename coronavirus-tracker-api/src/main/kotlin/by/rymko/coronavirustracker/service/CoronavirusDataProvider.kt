@@ -1,13 +1,8 @@
 package by.rymko.coronavirustracker.service
 
-import org.springframework.stereotype.Service
-import org.springframework.web.client.RestTemplate
+import by.rymko.coronavirustracker.dto.CountryStatsDto
 
-@Service
-class CoronavirusDataProvider(val restTemplate: RestTemplate) {
+interface CoronavirusDataProvider {
 
-    val CORONAVIRUS_DATA_PROVIDER_URL: String = "https://api.covid19api.com/summary"
-
-    fun getCoronavirusData(): String? = restTemplate.getForObject(CORONAVIRUS_DATA_PROVIDER_URL, String::class.java)
-
+    fun getCoronavirusData(): List<CountryStatsDto>
 }

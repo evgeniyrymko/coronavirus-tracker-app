@@ -4,8 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class CoronavirustrackerApplication
+class CoronavirusTrackerApplication
 
 fun main(args: Array<String>) {
-    runApplication<CoronavirustrackerApplication>(*args)
+    runApplication<CoronavirusTrackerApplication>(*args)
 }
