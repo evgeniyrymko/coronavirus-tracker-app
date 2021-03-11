@@ -6,6 +6,6 @@ target/
 *.info
 *.db.*
 
-/HELP.md
+*HELP.md
 
-/mvnw
+*mvnw
