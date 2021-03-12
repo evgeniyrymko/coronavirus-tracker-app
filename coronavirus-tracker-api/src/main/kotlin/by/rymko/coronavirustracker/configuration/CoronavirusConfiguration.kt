@@ -6,6 +6,8 @@ import by.rymko.coronavirustracker.service.CoronavirusDataProvider
 import by.rymko.coronavirustracker.service.CoronavirusService
 import by.rymko.coronavirustracker.service.DefaultCoronavirusDataProvider
 import by.rymko.coronavirustracker.service.DefaultCoronavirusService
+import com.fasterxml.jackson.databind.DeserializationFeature
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.web.client.RestTemplateBuilder
 import org.springframework.context.annotation.Bean
@@ -25,8 +27,13 @@ class CoronavirusConfiguration {
     @Bean
     fun coronavirusDataProvider(): CoronavirusDataProvider = DefaultCoronavirusDataProvider(
         restTemplate = restTemplate(restTemplateBuilder = RestTemplateBuilder()),
-        coronavirusDataProviderUrl = env.getRequiredProperty("coronavirus.data.provider.url")
+        coronavirusDataProviderUrl = env.getRequiredProperty("coronavirus.data.provider.url"),
+        mapper = mapper()
     )
+
+    @Bean
+    fun mapper(): ObjectMapper = ObjectMapper()
+        .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
 
     @Bean
     fun countryStatsMapper(): CountryStatsMapper = DefaultCountryStatsMapper()
