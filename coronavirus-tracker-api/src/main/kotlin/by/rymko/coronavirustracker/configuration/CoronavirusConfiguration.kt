@@ -27,8 +27,7 @@ class CoronavirusConfiguration {
     @Bean
     fun coronavirusDataProvider(): CoronavirusDataProvider = DefaultCoronavirusDataProvider(
         restTemplate = restTemplate(restTemplateBuilder = RestTemplateBuilder()),
-        coronavirusDataProviderUrl = env.getRequiredProperty("coronavirus.data.provider.url"),
-        mapper = mapper()
+        coronavirusDataProviderUrl = env.getRequiredProperty("coronavirus.data.provider.url")
     )
 
     @Bean
@@ -41,6 +40,7 @@ class CoronavirusConfiguration {
     @Bean
     fun coronavirusService(): CoronavirusService = DefaultCoronavirusService(
         coronavirusDataProvider = coronavirusDataProvider(),
-        countryStatsMapper = countryStatsMapper()
+        countryStatsMapper = countryStatsMapper(),
+        mapper = mapper()
     )
 }
