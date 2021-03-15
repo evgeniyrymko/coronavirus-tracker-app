@@ -1,6 +1,5 @@
 package by.rymko.coronavirustracker.controller
 
-import by.rymko.coronavirustracker.dto.CountryStatsDto
 import by.rymko.coronavirustracker.response.CountryStatsResponse
 import by.rymko.coronavirustracker.service.CoronavirusService
 import org.springframework.web.bind.annotation.GetMapping
