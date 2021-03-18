@@ -7,6 +7,7 @@ import by.rymko.coronavirustracker.mapper.CountryStatsMapper
 import by.rymko.coronavirustracker.response.CountryStatsResponse
 import com.fasterxml.jackson.core.JsonParseException
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.exc.MismatchedInputException
 import com.fasterxml.jackson.module.kotlin.readValue
 import java.util.logging.Logger
 
@@ -26,22 +27,15 @@ class DefaultCoronavirusService(
 
     private fun getCountryStatsDtoData(coronavirusData: String): List<CountryStatsDto> {
 
-        // add exception handling
-//        val coronavirusDataDto = mapper.readValue<CoronavirusDataDto>(coronavirusData)
-//        if (coronavirusDataDto == null) {
-//
-//            log.warning("Coronavirus Data can not be mapped to CoronavirusDataDto")
-//            throw CoronavirusDataException("Coronavirus Data can not be mapped to CoronavirusDataDto")
-//        } else {
-//            log.info("Coronavirus Data successfully mapped to CoronavirusDataDto")
-//        }
-
         val coronavirusDataDto: CoronavirusDataDto
-
         try {
             coronavirusDataDto = mapper.readValue(coronavirusData)
             log.info("Coronavirus Data successfully mapped to CoronavirusDataDto")
-        } catch (exception: JsonParseException) {
+        } catch (exception: MismatchedInputException) {
+            log.warning("Coronavirus Data can not be mapped to CoronavirusDataDto, caught $exception")
+            throw CoronavirusDataException("Coronavirus Data can not be mapped to CoronavirusDataDto, caught $exception")
+        }
+        catch (exception: JsonParseException) {
             log.warning("Coronavirus Data can not be mapped to CoronavirusDataDto")
             throw CoronavirusDataException("Coronavirus Data can not be mapped to CoronavirusDataDto")
         }
